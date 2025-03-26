@@ -1,8 +1,13 @@
 const pPromedio = document.getElementById("mostrarPromedio");
 const pNotaMayor = document.getElementById("mostrarMayorNota");
 
+<<<<<<< HEAD
 function CalcularPromedio(event) {
     event.preventDefault(); // Evita que el formulario se envíe
+=======
+function CalcularPromedio(evento) {
+    evento.preventDefault();
+>>>>>>> 1d817b4a353989956f72826957f2792d9141b114
     console.log("Entra a la función");
     let notaMatematica = parseFloat(document.getElementById("notaMatematica").value);
     let notaLengua = parseFloat(document.getElementById("notaLengua").value);
@@ -17,8 +22,15 @@ function CalcularPromedio(event) {
     }
 }
 
+<<<<<<< HEAD
 function NotaMasAlta(event) {
     event.preventDefault(); // Evita que el formulario se envíe
+=======
+
+
+function NotaMasAlta(evento) {
+    evento.preventDefault();
+>>>>>>> 1d817b4a353989956f72826957f2792d9141b114
     console.log("Entra a la función");
     let notaMatematica = parseFloat(document.getElementById("notaMatematica").value);
     let notaLengua = parseFloat(document.getElementById("notaLengua").value);
