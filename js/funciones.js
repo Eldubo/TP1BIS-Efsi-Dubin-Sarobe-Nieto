@@ -1,7 +1,8 @@
 const pPromedio = document.getElementById("mostrarPromedio");
 const pNotaMayor = document.getElementById("mostrarMayorNota");
 
-function CalcularPromedio() {
+function CalcularPromedio(event) {
+    event.preventDefault(); // Evita que el formulario se envíe
     console.log("Entra a la función");
     let notaMatematica = parseFloat(document.getElementById("notaMatematica").value);
     let notaLengua = parseFloat(document.getElementById("notaLengua").value);
@@ -10,20 +11,21 @@ function CalcularPromedio() {
     if (VerificarCamposCompletos(notaMatematica, notaLengua, notaEfsi) && VerificarCamposValidos()) {
         console.log("entra");
         var promedio = (notaMatematica + notaLengua + notaEfsi) / 3;
-        alert(promedio)
+        alert(promedio);
         pPromedio.innerHTML = "El promedio de notas es de " + promedio;
         pPromedio.style.color = promedio < 6 ? "red" : "green";
     }
 }
 
-function NotaMasAlta() {
+function NotaMasAlta(event) {
+    event.preventDefault(); // Evita que el formulario se envíe
     console.log("Entra a la función");
     let notaMatematica = parseFloat(document.getElementById("notaMatematica").value);
     let notaLengua = parseFloat(document.getElementById("notaLengua").value);
     let notaEfsi = parseFloat(document.getElementById("notaEfsi").value);
 
     pNotaMayor.innerHTML = "La/s materia/s en las que obtuvo la nota más alta es/son ";
-    
+
     if (VerificarCamposCompletos(notaMatematica, notaLengua, notaEfsi) && VerificarCamposValidos()) {
         let notaMasAlta = Math.max(notaMatematica, notaLengua, notaEfsi);
         if (notaMatematica === notaMasAlta) {
@@ -38,6 +40,7 @@ function NotaMasAlta() {
         pNotaMayor.style.color = "blue";
     }
 }
+
 
 function VerificarCamposCompletos(notaMatematica, notaLengua, notaEfsi) {
     if (notaMatematica != null && notaLengua != null && notaEfsi != null) {
