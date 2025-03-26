@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <form>
+    <form action="index.html" method="get">
         <label for="notaMatematica">Ingrese la nota de matematica</label>
-        <input type="text" id="notaMatematica">
+        <input type="text" id="notaMatematica" onkeyup="VerificarMatematica()">
         <label for="notaLengua">Ingrese la nota de lengua</label>
-        <input type="text" id="notaLengua">
+        <input type="text" id="notaLengua" onkeyup="VerificarLengua()">
         <label for="notaEfsi">Ingrese la nota de EFSI</label>
-        <input type="text" id="notaEfsi">
+        <input type="text" id="notaEfsi" onkeyup="VerificarEFSI()">
         <div id="resultados">
             <p id="mostrarPromedio"></p>
             <p id="mostrarMayorNota"></p>
         </div>
-        <button id = "botonCalcularPromedio" onclick="CalcularPormedio()">Calcular Promedio</button>
-        <button id="botonMostrarNota" onclick="NotaMasAlta()">Mostrar materia con mayor nota</button>
+        <button id = "botonCalcularPromedio" onclick="CalcularPromedio()">Calcular Promedio</button>
+        <button id="botonMostrarNota" onkeyup="NotaMasAlta()">Mostrar materia con mayor nota</button>
     </form>
     <script src="js/funciones.js"></script>
 </body>

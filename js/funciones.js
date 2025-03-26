@@ -1,39 +1,80 @@
-const expresionValidaNums = /^[0-9]*$/;
+const pPromedio = document.getElementById("mostrarPromedio");
+const pNotaMayor = document.getElementById("mostrarMayorNota");
 
+function CalcularPromedio() {
+    console.log("Entra a la función");
+    let notaMatematica = parseFloat(document.getElementById("notaMatematica").value);
+    let notaLengua = parseFloat(document.getElementById("notaLengua").value);
+    let notaEfsi = parseFloat(document.getElementById("notaEfsi").value);
 
-function CalcularPormedio() {
-    let notaMatematica = document.getElementById("notaMatematica").value;
-    let notaLengua = document.getElementById("notaLengua").value;
-    let notaEfsi = document.getElementById("notaEfsi").value;
-    if(VerificarCamposCompletos(notaMatematica, notaLengua, notaEfsi)){
+    if (VerificarCamposCompletos(notaMatematica, notaLengua, notaEfsi) && VerificarCamposValidos()) {
+        console.log("entra");
         var promedio = (notaMatematica + notaLengua + notaEfsi) / 3;
+        alert(promedio)
+        pPromedio.innerHTML = "El promedio de notas es de " + promedio;
+        pPromedio.style.color = promedio < 6 ? "red" : "green";
     }
 }
 
 function NotaMasAlta() {
-    let notaMatematica = document.getElementById("notaMatematica").value;
-    let notaLengua = document.getElementById("notaLengua").value;
-    let notaEfsi = document.getElementById("notaEfsi").value;
-    if(VerificarCamposCompletos(notaMatematica, notaLengua, notaEfsi)){
-        let notaMasAlta = null
-        notaMasAlta = Math.max(notaMatematica, notaLengua, notaEfsi)-
-     /*  if(notaMatematica > notaLengua && notaMatematica > notaEfsi){
-           notaMasAlta = notaMatematica
+    console.log("Entra a la función");
+    let notaMatematica = parseFloat(document.getElementById("notaMatematica").value);
+    let notaLengua = parseFloat(document.getElementById("notaLengua").value);
+    let notaEfsi = parseFloat(document.getElementById("notaEfsi").value);
+
+    pNotaMayor.innerHTML = "La/s materia/s en las que obtuvo la nota más alta es/son ";
+    
+    if (VerificarCamposCompletos(notaMatematica, notaLengua, notaEfsi) && VerificarCamposValidos()) {
+        let notaMasAlta = Math.max(notaMatematica, notaLengua, notaEfsi);
+        if (notaMatematica === notaMasAlta) {
+            pNotaMayor.innerHTML += "matemática";
         }
-        else if (notaLengua > notaMatematica && notaLengua > notaEfsi){
-            notaMasAlta = notaLengua
+        if (notaLengua === notaMasAlta) {
+            pNotaMayor.innerHTML += ", lengua";
         }
-        else if(notaEfsi > notaLengua && notaEfsi > notaMatematica){
-            notaMasAlta = notaEfsi
+        if (notaEfsi === notaMasAlta) {
+            pNotaMayor.innerHTML += ", EFSI";
         }
-        else {
-            notaMasAlta = "Hay 2 o mas materias con la misma nota"
-        }*/
+        pNotaMayor.style.color = "blue";
     }
 }
 
-VerificarCamposCompletos(notaMatematica, notaLengua, notaEfsi);{
-    let ret = false;
-    expresionValidaNums.test(notaMatematica) && expresionValidaNums.test(notaLengua) && expresionValidaNums.test(notaEfsi) ? ret = true : alert("Faltan completar campos");
-    return ret;
+function VerificarCamposCompletos(notaMatematica, notaLengua, notaEfsi) {
+    if (notaMatematica != null && notaLengua != null && notaEfsi != null) {
+        return true;
+    } else {
+        alert("Los campos son obligatorios");
+        return false;
+    }
+}
+
+function VerificarCampoValido(notaElement) {
+    let nota = parseFloat(notaElement.value);
+    if (ValidarNota(nota)) {
+        notaElement.style.color = "green";
+        return true;
+    } else {
+        notaElement.style.color = "red";
+        return false;
+    }
+}
+
+function VerificarMatematica() {
+    let nota = document.getElementById("notaMatematica");
+    return VerificarCampoValido(nota);
+}
+
+function VerificarLengua() {
+    let nota = document.getElementById("notaLengua");
+    return VerificarCampoValido(nota);
+}
+
+function VerificarEFSI() {
+    let nota = document.getElementById("notaEfsi");
+    return VerificarCampoValido(nota);
+}
+
+
+function ValidarNota(nota) {
+    return nota >= 1 && nota <= 10;
 }
