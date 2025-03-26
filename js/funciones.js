@@ -1,53 +1,44 @@
 const pPromedio = document.getElementById("mostrarPromedio");
 const pNotaMayor = document.getElementById("mostrarMayorNota");
 
-<<<<<<< HEAD
 function CalcularPromedio(event) {
-    event.preventDefault(); // Evita que el formulario se envíe
-=======
-function CalcularPromedio(evento) {
-    evento.preventDefault();
->>>>>>> 1d817b4a353989956f72826957f2792d9141b114
-    console.log("Entra a la función");
-    let notaMatematica = parseFloat(document.getElementById("notaMatematica").value);
-    let notaLengua = parseFloat(document.getElementById("notaLengua").value);
-    let notaEfsi = parseFloat(document.getElementById("notaEfsi").value);
+    event.preventDefault(); 
+    
+    let notaMatematica = document.getElementById("notaMatematica").value;
+    let notaLengua = document.getElementById("notaLengua").value;
+    let notaEfsi = document.getElementById("notaEfsi").value;
 
     if (VerificarCamposCompletos(notaMatematica, notaLengua, notaEfsi) && VerificarCamposValidos()) {
-        console.log("entra");
+        notaMatematica = parseFloat(notaMatematica);
+        notaEfsi = parseFloat(notaEfsi);
+        notaLengua = parseFloat(notaLengua);
         var promedio = (notaMatematica + notaLengua + notaEfsi) / 3;
-        alert(promedio);
         pPromedio.innerHTML = "El promedio de notas es de " + promedio;
         pPromedio.style.color = promedio < 6 ? "red" : "green";
     }
 }
 
-<<<<<<< HEAD
 function NotaMasAlta(event) {
-    event.preventDefault(); // Evita que el formulario se envíe
-=======
+    event.preventDefault();
+    let notaMatematica = document.getElementById("notaMatematica").value;
+    let notaLengua = document.getElementById("notaLengua").value;
+    let notaEfsi = document.getElementById("notaEfsi").value;
 
-
-function NotaMasAlta(evento) {
-    evento.preventDefault();
->>>>>>> 1d817b4a353989956f72826957f2792d9141b114
-    console.log("Entra a la función");
-    let notaMatematica = parseFloat(document.getElementById("notaMatematica").value);
-    let notaLengua = parseFloat(document.getElementById("notaLengua").value);
-    let notaEfsi = parseFloat(document.getElementById("notaEfsi").value);
-
-    pNotaMayor.innerHTML = "La/s materia/s en las que obtuvo la nota más alta es/son ";
 
     if (VerificarCamposCompletos(notaMatematica, notaLengua, notaEfsi) && VerificarCamposValidos()) {
+        pNotaMayor.innerHTML = "La/s materia/s en las que obtuvo la nota más alta es/son ";
+        notaMatematica = parseFloat(notaMatematica);
+        notaEfsi = parseFloat(notaEfsi);
+        notaLengua = parseFloat(notaLengua);
         let notaMasAlta = Math.max(notaMatematica, notaLengua, notaEfsi);
         if (notaMatematica === notaMasAlta) {
             pNotaMayor.innerHTML += "matemática";
         }
         if (notaLengua === notaMasAlta) {
-            pNotaMayor.innerHTML += ", lengua";
+            pNotaMayor.innerHTML += " lengua";
         }
         if (notaEfsi === notaMasAlta) {
-            pNotaMayor.innerHTML += ", EFSI";
+            pNotaMayor.innerHTML += " EFSI";
         }
         pNotaMayor.style.color = "blue";
     }
@@ -55,23 +46,37 @@ function NotaMasAlta(evento) {
 
 
 function VerificarCamposCompletos(notaMatematica, notaLengua, notaEfsi) {
-    if (notaMatematica != null && notaLengua != null && notaEfsi != null) {
-        return true;
+    let ret = false;
+   
+    if (notaMatematica != "" && notaLengua != "" && notaEfsi != "") {
+        ret = true;
     } else {
         alert("Los campos son obligatorios");
-        return false;
     }
+    return ret;
+}
+
+function VerificarCamposValidos(){
+    let ret = false;
+    if( VerificarMatematica() && VerificarLengua() && VerificarEFSI()){
+        ret = true;
+        
+    }else{
+        alert("Las notas tienen que tener un valor entre el 1 y el 10");
+    }
+    return ret;
 }
 
 function VerificarCampoValido(notaElement) {
+    let ret = false;
     let nota = parseFloat(notaElement.value);
-    if (ValidarNota(nota)) {
+    if (nota >= 1 && nota <= 10) {
         notaElement.style.color = "green";
-        return true;
+        ret = true;
     } else {
         notaElement.style.color = "red";
-        return false;
     }
+    return ret;
 }
 
 function VerificarMatematica() {
@@ -90,6 +95,3 @@ function VerificarEFSI() {
 }
 
 
-function ValidarNota(nota) {
-    return nota >= 1 && nota <= 10;
-}
