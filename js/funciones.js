@@ -1,7 +1,8 @@
 const pPromedio = document.getElementById("mostrarPromedio");
 const pNotaMayor = document.getElementById("mostrarMayorNota");
 
-function CalcularPromedio() {
+function CalcularPromedio(evento) {
+    evento.preventDefault();
     console.log("Entra a la función");
     let notaMatematica = parseFloat(document.getElementById("notaMatematica").value);
     let notaLengua = parseFloat(document.getElementById("notaLengua").value);
@@ -16,7 +17,10 @@ function CalcularPromedio() {
     }
 }
 
-function NotaMasAlta() {
+
+
+function NotaMasAlta(evento) {
+    evento.preventDefault();
     console.log("Entra a la función");
     let notaMatematica = parseFloat(document.getElementById("notaMatematica").value);
     let notaLengua = parseFloat(document.getElementById("notaLengua").value);
